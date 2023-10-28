@@ -35,11 +35,15 @@ public class Player {
     }
 
     public void moveRight() {
-        x -= 5;
+        x += 5;
     }
 
     public void jump() {
         y -= 10;
+    }
+
+    public void moveDown() {
+        y += 10;
     }
 
     public int getX() {

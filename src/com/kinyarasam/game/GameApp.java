@@ -29,6 +29,9 @@ public class GameApp extends JPanel {
         g.drawImage(playerImage, player.getX(), player.getY(), player.getWidth(), player.getHeight(), null);
     }
 
+    /**
+     * @param args
+     */
     public static void main(String[] args) {
         JFrame frame = new JFrame("Mario Game");
         GameApp gameApp = new GameApp();
@@ -40,6 +43,13 @@ public class GameApp extends JPanel {
 
         // Game Loop
         while (true) {
+            // Check for collision with the window boundaries
+            if (gameApp.player.getX() < 0) {
+                gameApp.player.setX(0); // Prevent player from moving left beyond the window
+            } else if (gameApp.player.getX() > gameApp.getWidth() - gameApp.player.getWidth()) {
+                gameApp.player.setX(gameApp.getWidth() - gameApp.player.getWidth()); // Prevent player from moving right beyond the window
+            }
+
             gameApp.repaint();
 
             try {

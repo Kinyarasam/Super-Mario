@@ -28,5 +28,9 @@ public class KeyboardInput extends KeyAdapter {
         if (key == KeyEvent.VK_UP) {
             player.jump();
         }
+
+        if (key == KeyEvent.VK_DOWN) {
+            player.moveDown();
+        }
     }
 }
