@@ -6,6 +6,8 @@ import com.kinyarasam.game.inputs.KeyboardInput;
 import javax.swing.JFrame;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+
 // import java.awt.image.BufferedImage;
 import javax.swing.JPanel;
 
@@ -23,8 +25,8 @@ public class GameApp extends JPanel {
         super.paintComponent(g);
         setBackground(Color.BLACK);
 
-        g.setColor(Color.RED);
-        g.fillRect(player.getX(), player.getY(), player.getWidth(), player.getHeight());
+        BufferedImage playerImage = player.getPlayerImage();
+        g.drawImage(playerImage, player.getX(), player.getY(), player.getWidth(), player.getHeight(), null);
     }
 
     public static void main(String[] args) {
