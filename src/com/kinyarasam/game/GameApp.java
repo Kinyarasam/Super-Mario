@@ -13,10 +13,14 @@ import javax.swing.JPanel;
 
 public class GameApp extends JPanel {
     private Player player;
+    private int groundHeight; // Ground level in the game
+    private KeyboardInput keyboardInput;
 
     public GameApp() {
         player = new Player(100, 100, 50, 50);
-        addKeyListener(new KeyboardInput(player));
+        groundHeight = 500; 
+        keyboardInput = new KeyboardInput(player);
+        addKeyListener(keyboardInput);
         setFocusable(true);
     }
 
@@ -49,6 +53,15 @@ public class GameApp extends JPanel {
             } else if (gameApp.player.getX() > gameApp.getWidth() - gameApp.player.getWidth()) {
                 gameApp.player.setX(gameApp.getWidth() - gameApp.player.getWidth()); // Prevent player from moving right beyond the window
             }
+
+            // Apply gravity and check for jumping input only when on the ground
+            if (gameApp.player.isOnGround(gameApp.groundHeight)) {
+                gameApp.player.applyGravity(gameApp.groundHeight);
+                if (gameApp.keyboardInput.isJumping()) {
+                    gameApp.player.jump();
+                }
+            }
+
 
             gameApp.repaint();
 
