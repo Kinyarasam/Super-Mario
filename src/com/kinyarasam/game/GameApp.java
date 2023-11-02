@@ -1,5 +1,6 @@
 package com.kinyarasam.game;
 
+import com.kinyarasam.game.entities.Obstacle;
 import com.kinyarasam.game.entities.Player;
 import com.kinyarasam.game.inputs.KeyboardInput;
 
@@ -15,11 +16,13 @@ public class GameApp extends JPanel {
     private Player player;
     private int groundHeight; // Ground level in the game
     private KeyboardInput keyboardInput;
+    private Obstacle obstacle;
 
     public GameApp() {
         player = new Player(100, 100, 50, 50);
         groundHeight = 500; 
         keyboardInput = new KeyboardInput(player);
+        obstacle = new Obstacle(600, groundHeight - 80, 90, 100, "assets/pipe.png");
         addKeyListener(keyboardInput);
         setFocusable(true);
     }
@@ -31,6 +34,9 @@ public class GameApp extends JPanel {
 
         BufferedImage playerImage = player.getPlayerImage();
         g.drawImage(playerImage, player.getX(), player.getY(), player.getWidth(), player.getHeight(), null);
+
+        BufferedImage obstacleImage = obstacle.getObstacleImage();
+        g.drawImage(obstacleImage, obstacle.getX(), obstacle.getY(), obstacle.getWidth(), obstacle.getHeight(), null);
     }
 
     /**
